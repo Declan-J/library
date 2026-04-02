@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+}
+
+html {
+    background-color: lightgray;
+}
+
+.container {
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  min-width: 250px;
+  padding: 1rem;
+  background-color: white;
+  border-left: solid orange 8px;
+  border-radius: 8px;
+}
