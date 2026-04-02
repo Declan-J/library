@@ -11,16 +11,16 @@ function Book(id, title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(id, title, author, pages, read) {
+function addBookToLibrary(title, author, pages, read) {
     // take params, create a book then store it in the array
-
+    id = crypto.randomUUID()
     let newBook = new Book(id, title, author, pages, read)
     myLibrary.push(newBook);
 }
 
-addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 1", "E.Oda", 126, "read");
-addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 2", "E.Oda", 148, "read");
-addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 3", "E.Oda", 138, "not read");
+addBookToLibrary("One Piece: Volume 1", "E.Oda", 126, "read");
+addBookToLibrary("One Piece: Volume 2", "E.Oda", 148, "read");
+addBookToLibrary("One Piece: Volume 3", "E.Oda", 138, "not read");
 
 // --- DISPLAY LOGIC ---
 container = document.querySelector(".container");
@@ -52,4 +52,13 @@ myLibrary.forEach((e) => {
     container.appendChild(card);
 
     cardNumber++;
+})
+
+// --- FORM LOGIC ---
+const submit = document.getElementById("submit")
+const dialog = document.querySelector("dialog")
+submit.addEventListener("click", (e) => {
+    e.preventDefault();
+    // PROCESS FORM
+    dialog.close();
 })
