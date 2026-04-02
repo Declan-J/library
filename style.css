@@ -1,9 +1,6 @@
-* {
-    margin: 0;
-}
-
 html {
     background-color: lightgray;
+    padding: 1rem;
 }
 
 .container {
@@ -19,4 +16,9 @@ html {
   background-color: white;
   border-left: solid orange 8px;
   border-radius: 8px;
+}
+
+dialog {
+  margin: auto;
+  
 }
