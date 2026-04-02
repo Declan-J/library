@@ -2,24 +2,25 @@
 
 const myLibrary = [];
 
-function Book(id, title, author, pages) {
+function Book(id, title, author, pages, read) {
     // the constructor...
     this.id = id;
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.read = read;
 }
 
-function addBookToLibrary(id, title, author, pages) {
+function addBookToLibrary(id, title, author, pages, read) {
     // take params, create a book then store it in the array
 
-    let newBook = new Book(id, title, author, pages)
+    let newBook = new Book(id, title, author, pages, read)
     myLibrary.push(newBook);
 }
 
-addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 1", "E.Oda", 126);
-addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 2", "E.Oda", 148);
-addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 3", "E.Oda", 138);
+addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 1", "E.Oda", 126, "read");
+addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 2", "E.Oda", 148, "read");
+addBookToLibrary(crypto.randomUUID(), "One Piece: Volume 3", "E.Oda", 138, "not read");
 
 // --- DISPLAY LOGIC ---
 container = document.querySelector(".container");
@@ -32,7 +33,7 @@ myLibrary.forEach((e) => {
     card.setAttribute("id", `card${cardNumber}`);
     card.setAttribute("class", "card");
 
-    const title = document.createElement("h4");
+    const title = document.createElement("h3");
     title.append(e.title);
 
     const author = document.createElement("p");
@@ -41,10 +42,13 @@ myLibrary.forEach((e) => {
     const pages = document.createElement("p");
     pages.append(e.pages);
 
+    const read = document.createElement("p")
+    read.append(e.read)
+
     const id = document.createElement("small");
     id.append(e.id)
 
-    card.append(title, author, pages, id)
+    card.append(title, author, pages, read, id)
     container.appendChild(card);
 
     cardNumber++;
