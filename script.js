@@ -24,41 +24,65 @@ addBookToLibrary("One Piece: Volume 3", "E.Oda", 138, "not read");
 
 // --- DISPLAY LOGIC ---
 container = document.querySelector(".container");
-
 // counter used for card unique ID
-cardNumber = 1;
-myLibrary.forEach((e) => {
-// Create DOM elements for each entry in the library.
-    const card = document.createElement("div")
-    card.setAttribute("id", `card${cardNumber}`);
-    card.setAttribute("class", "card");
+cardNumber = 0;
 
-    const title = document.createElement("h3");
-    title.append(e.title);
+function displayLibrary() {
+    //Remove all cards (prevents dupes)
+        while (container.firstChild) {
+            container.removeChild(container.lastChild)
+        }
+    myLibrary.forEach((e) => {
 
-    const author = document.createElement("p");
-    author.append(e.author);
+        // Create DOM elements for each entry in the library.
+        const card = document.createElement("div")
+        card.setAttribute("id", `card${cardNumber + 1}`);
+        card.setAttribute("class", "card");
+        // card.setAttribute("data-id", `${e.id}`)
 
-    const pages = document.createElement("p");
-    pages.append(e.pages);
+        const title = document.createElement("h3");
+        title.append(e.title);
 
-    const read = document.createElement("p")
-    read.append(e.read)
+        const author = document.createElement("p");
+        author.append(e.author);
 
-    const id = document.createElement("small");
-    id.append(e.id)
+        const pages = document.createElement("p");
+        pages.append(e.pages);
 
-    card.append(title, author, pages, read, id)
-    container.appendChild(card);
+        const read = document.createElement("p")
+        read.append(e.read)
 
-    cardNumber++;
-})
+        const id = document.createElement("small");
+        id.append(e.id)
+
+        const button = document.createElement("button");
+        button.append("Remove Book")
+        button.setAttribute("data-id", `${e.id}`)
+
+        const hr = document.createElement("hr")
+        const br = document.createElement("br")
+
+        card.append(title, author, pages, read, id, br, hr, button)
+        container.appendChild(card);
+        cardNumber++;
+    })
+}
+displayLibrary();
 
 // --- FORM LOGIC ---
-const submit = document.getElementById("submit")
-const dialog = document.querySelector("dialog")
 submit.addEventListener("click", (e) => {
     e.preventDefault();
-    // PROCESS FORM
+
+    // Get Inputs from Form
+    const dialog = document.querySelector("dialog");
+    let d_title = document.getElementById("title").value;
+    let d_author = document.getElementById("author").value;
+    let d_pages = document.getElementById("pages").value;
+    let d_read = document.getElementById("read").value;
+
+    // Push inputs into Library
+    addBookToLibrary(d_title, d_author, d_pages, d_read);
+    displayLibrary();
+
     dialog.close();
 })
