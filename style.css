@@ -20,5 +20,9 @@ html {
 
 dialog {
   margin: auto;
-  
+}
+
+.buttons_container {
+  display: flex;
+  justify-content: space-between;
 }
